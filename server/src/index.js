@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import personService from "./services/person";
+import postService from "./services/post";
 import graphql from "./services/graphql";
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
@@ -20,6 +21,11 @@ graphql.applyMiddleware({ app });
 app.get("/person", async (req, res, next) => {
   const persons = await personService.all();
   res.json(persons);
+});
+
+app.get("/post", async (req, res, next) => {
+  const posts = await postService.all();
+  res.json(posts);
 });
 
 app.post("/person", async (req, res, next) => {

@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import personService from "./person";
+import postsService from "./post";
 import { DateTime } from "luxon";
 
 const typeDefs = gql`
@@ -48,9 +49,19 @@ const typeDefs = gql`
     birthDay: String!
   }
 
+  type Post {
+    id: ID!
+    title: String!
+    description: String!
+    text: String!
+    date: String!
+    image: String!
+  }
+
   type Query {
     getPersons: [Person]!
     getPerson(id: String!): Person
+    getPosts: [Post]!
   }
 
   type Mutation {
@@ -62,7 +73,8 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     getPersons: async () => personService.all(),
-    getPerson: async (_, { id }) => personService.findById(id)
+    getPerson: async (_, { id }) => personService.findById(id),
+    getPosts: async () => postsService.all()
   },
   Mutation: {
     firePerson: async (_, { input }) => {

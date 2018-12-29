@@ -1,8 +1,17 @@
 import React from "react";
-import App from "./components/App";
+import App from "./components/container/AppContainer";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 const Root = props => {
-  return <App />;
+  const { store } = props;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  );
 };
 
 export default Root;
