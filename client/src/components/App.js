@@ -8,6 +8,7 @@ import PostsList from "./PostsList";
 import Post from "./Post";
 import PopularPosts from "./PopularPosts";
 import FollowMe from "./FollowMe";
+import AdminPanel from "./AdminPanel";
 
 const Grid = styled.div`
   display: flex;
@@ -46,7 +47,8 @@ class App extends React.PureComponent {
                 path="/"
                 render={() => <PostsList posts={posts} />}
               />
-              <Route exact path="/posts/:slug" component={Post} />
+              <Route path="/posts/:slug" component={Post} />
+              <Route path="/admin" component={AdminPanel} />
             </Switch>
           </LeftColumn>
           <RightColumn>
