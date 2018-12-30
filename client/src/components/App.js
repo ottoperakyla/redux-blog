@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -8,7 +9,7 @@ import PostsList from "./PostsList";
 import Post from "./Post";
 import PopularPosts from "./PopularPosts";
 import FollowMe from "./FollowMe";
-import AdminPanel from "./AdminPanel";
+import AdminPanel from "./container/AdminPanelContainer";
 
 const Grid = styled.div`
   display: flex;
@@ -32,12 +33,22 @@ const RightColumn = styled.div`
 class App extends React.PureComponent {
   componentDidMount() {
     this.props.fetchPosts();
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   render() {
-    const { posts, popularPosts } = this.props;
+    const { posts, popularPosts, logout, loggedIn } = this.props;
     return (
       <>
+        {loggedIn ? (
+          <div>
+            Logged in as admin. <button onClick={logout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <Link to="/admin">Admin login</Link>
+          </div>
+        )}
         <Header />
         <Grid>
           <LeftColumn>

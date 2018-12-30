@@ -33,7 +33,15 @@ const typeDefs = gql`
     id: String!
   }
 
+  input DeletePostInput {
+    id: String!
+  }
+
   type FirePersonPayload {
+    id: String
+  }
+
+  type DeletePostPayload {
     id: String
   }
 
@@ -67,6 +75,7 @@ const typeDefs = gql`
   type Mutation {
     firePerson(input: FirePersonInput!): FirePersonPayload
     hirePerson(input: HirePersonInput!): HirePersonPayload
+    deletePost(input: DeletePostInput!): DeletePostPayload
   }
 `;
 
@@ -80,6 +89,14 @@ const resolvers = {
     firePerson: async (_, { input }) => {
       // console.log("firing person", { _, input });
       await personService.remove(input.id);
+
+      return {
+        id: input.id
+      };
+    },
+    deletePost: async (_, { input }) => {
+      // console.log("firing person", { _, input });
+      await postsService.remove(input.id);
 
       return {
         id: input.id

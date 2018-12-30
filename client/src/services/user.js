@@ -1,11 +1,17 @@
-import axios from "axios";
-
 function login(username, password) {
-  return axios
-    .post("http://localhost:8889/login", { username, password })
-    .then(res => res.data);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      localStorage.setItem("loggedIn", "1");
+      resolve();
+    }, Math.random() * 2000);
+  });
+}
+
+function logout() {
+  localStorage.removeItem("loggedIn");
 }
 
 export default {
-  login
+  login,
+  logout
 };
