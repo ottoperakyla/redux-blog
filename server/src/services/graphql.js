@@ -70,6 +70,7 @@ const typeDefs = gql`
     getPersons: [Person]!
     getPerson(id: String!): Person
     getPosts: [Post]!
+    getPost(id: String!): Post
   }
 
   type Mutation {
@@ -83,7 +84,8 @@ const resolvers = {
   Query: {
     getPersons: async () => personService.all(),
     getPerson: async (_, { id }) => personService.findById(id),
-    getPosts: async () => postsService.all()
+    getPosts: async () => postsService.all(),
+    getPost: async (_, { id }) => postsService.findById(id)
   },
   Mutation: {
     firePerson: async (_, { input }) => {

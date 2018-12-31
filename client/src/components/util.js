@@ -13,10 +13,6 @@ export function scrollToTop() {
   );
 }
 
-export function limitChars(max, str) {
+export function limitChars(str, max = 50) {
   return str.length > max ? str.substring(0, max) + "..." : str;
-}
-
-export function embedImage(str) {
-  return str.includes("lorempixel") ? <Image src={str} /> : str;
 }

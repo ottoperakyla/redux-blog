@@ -1,8 +1,11 @@
 import express from "express";
 import path from "path";
-
+import * as R from "ramda";
 import dotenv from "dotenv";
+
 dotenv.config();
+
+window.R = R;
 
 const port = parseInt(process.env.SSR_PORT, 10);
 

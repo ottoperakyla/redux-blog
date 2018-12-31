@@ -9,6 +9,8 @@ import PostsList from "./PostsList";
 import Post from "./Post";
 import PopularPosts from "./PopularPosts";
 import FollowMe from "./FollowMe";
+import PostForm from "./PostForm";
+import PostFormContainer from "./container/PostFormContainer";
 import AdminPanel from "./container/AdminPanelContainer";
 
 const Grid = styled.div`
@@ -33,7 +35,6 @@ const RightColumn = styled.div`
 class App extends React.PureComponent {
   componentDidMount() {
     this.props.fetchPosts();
-    window.addEventListener("scroll", this.handleScroll);
   }
 
   render() {
@@ -42,7 +43,8 @@ class App extends React.PureComponent {
       <>
         {loggedIn ? (
           <div>
-            Logged in as admin. <button onClick={logout}>Logout</button>
+            Logged in as admin. <Link to="/admin">Admin panel</Link>
+            <button onClick={logout}>Logout</button>
           </div>
         ) : (
           <div>
@@ -58,6 +60,8 @@ class App extends React.PureComponent {
                 path="/"
                 render={() => <PostsList posts={posts} />}
               />
+              <Route exact path="/posts/create" component={PostForm} />
+              <Route path="/posts/:id/edit" component={PostFormContainer} />
               <Route path="/posts/:slug" component={Post} />
               <Route path="/admin" component={AdminPanel} />
             </Switch>

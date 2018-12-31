@@ -12,10 +12,10 @@ export function fetchPosts() {
   };
 }
 
-export function deletePost(slug) {
+export function deletePost(id) {
   return {
     type: DELETE_POST,
-    payload: postService.deletePost(slug)
+    payload: postService.deletePost(id)
   };
 }
 

@@ -63,6 +63,16 @@ app.delete("/post/:id", async (req, res, next) => {
   res.json(post);
 });
 
+app.get("/post/:id", async (req, res, next) => {
+  const post = await postService.findById(req.params.id);
+
+  if (!post) {
+    res.status(404).send("post not found");
+  }
+
+  res.json(post);
+});
+
 /*
 const resources = {
   customer: customerService,

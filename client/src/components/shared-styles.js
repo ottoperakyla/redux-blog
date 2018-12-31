@@ -14,3 +14,9 @@ export const Image = styled.img`
   object-fit: cover;
   margin-bottom: 0.25rem;
 `;
+
+export const FormInputs = styled.div`
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 5px;
+`;
