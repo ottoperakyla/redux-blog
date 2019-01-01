@@ -4,8 +4,15 @@ Furry featured cat blogging platform.
 
 ## Tech
 
+### Client
+
 - React
 - Redux
+
+### Server
+
+- Node.js
+- Express
 - GraphQL
 
 ## Features
