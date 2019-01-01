@@ -73,6 +73,16 @@ app.get("/post/:id", async (req, res, next) => {
   res.json(post);
 });
 
+app.post("/post", async (req, res, next) => {
+  const post = await postService.create(req.body);
+  res.json(post);
+});
+
+app.post("/post/:id", async (req, res, next) => {
+  const post = await postService.update(req.params.id, req.body);
+  res.json(post);
+});
+
 /*
 const resources = {
   customer: customerService,

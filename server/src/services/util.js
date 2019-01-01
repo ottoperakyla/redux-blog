@@ -59,10 +59,23 @@ export const servicify = objects => {
     return obj;
   };
 
+  const update = (id, data) => {
+    const obj = {
+      id,
+      ...data
+    };
+
+    resources = resources.set(id, obj);
+
+    console.log("obj", obj);
+    return obj;
+  };
+
   return {
     all,
     findById,
     remove,
-    create
+    create,
+    update
   };
 };

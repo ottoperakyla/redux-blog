@@ -9,7 +9,6 @@ import PostsList from "./PostsList";
 import Post from "./Post";
 import PopularPosts from "./PopularPosts";
 import FollowMe from "./FollowMe";
-import PostForm from "./PostForm";
 import PostFormContainer from "./container/PostFormContainer";
 import AdminPanel from "./container/AdminPanelContainer";
 
@@ -60,7 +59,7 @@ class App extends React.PureComponent {
                 path="/"
                 render={() => <PostsList posts={posts} />}
               />
-              <Route exact path="/posts/create" component={PostForm} />
+              <Route exact path="/posts/create" component={PostFormContainer} />
               <Route path="/posts/:id/edit" component={PostFormContainer} />
               <Route path="/posts/:slug" component={Post} />
               <Route path="/admin" component={AdminPanel} />

@@ -1,58 +1,73 @@
 import React from "react";
 import { FormInputs } from "./shared-styles";
+import { scrollToTop } from "./util";
 
 export default class PostForm extends React.PureComponent {
   constructor(props) {
+    const {
+      match: {
+        params: { id }
+      }
+    } = props;
     super(props);
     this.state = {
-      title: "",
-      description: "",
-      text: "",
-      image: "",
+      post: {
+        title: "",
+        description: "",
+        text: ""
+      },
+      postId: id,
+      fetched: false,
       error: undefined
     };
     this.titleInput = React.createRef();
   }
 
   componentDidMount() {
-    const {
-      match: {
-        params: { id }
-      }
-    } = this.props;
     this.titleInput.current.focus();
-    if (id) {
-      this.props.fetchPost(id);
+
+    if (this.state.postId) {
+      this.props.fetchPost(this.state.postId);
     }
   }
 
   componentDidUpdate() {
-    if (this.props.editingPost) {
-      this.setState(this.props.editingPost);
+    scrollToTop();
+
+    if (this.props.editingPost && !this.state.fetched) {
+      this.setState({ post: this.props.editingPost, fetched: true });
     }
   }
 
   updateState = ({ target: { id, value } }) => {
     this.setState({
       ...this.state,
-      [id]: value
+      post: {
+        ...this.state.post,
+        [id]: value
+      }
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
-    console.log("lollers", this.state);
+    if (this.state.postId) {
+      this.props.updatePost(this.state.postId, this.state.post);
+    } else {
+      this.props.createPost(this.state.post);
+    }
   };
 
   render() {
+    const title = this.state.postId ? "Edit post" : "Create new post";
     return (
       <form>
-        <h4>Create new post</h4>
+        <h4>{title}</h4>
 
         <FormInputs>
           <label htmlFor="title">title</label>
           <input
-            value={this.state.title}
+            value={this.state.post.title}
             onChange={this.updateState}
             ref={this.titleInput}
             id="title"
@@ -61,7 +76,7 @@ export default class PostForm extends React.PureComponent {
 
           <label htmlFor="description">description</label>
           <input
-            value={this.state.description}
+            value={this.state.post.description}
             onChange={this.updateState}
             id="description"
             type="text"
@@ -69,15 +84,12 @@ export default class PostForm extends React.PureComponent {
 
           <label htmlFor="text">text</label>
           <textarea
-            value={this.state.text}
+            value={this.state.post.text}
             onChange={this.updateState}
             rows="10"
             id="text"
             type="text"
           />
-
-          <label htmlFor="image">image</label>
-          <input id="image" type="file" />
         </FormInputs>
 
         <button onClick={this.onSubmit}>Submit</button>
