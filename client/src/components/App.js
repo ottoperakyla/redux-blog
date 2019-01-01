@@ -8,7 +8,6 @@ import About from "./About";
 import PostsList from "./PostsList";
 import Post from "./Post";
 import PopularPosts from "./PopularPosts";
-import FollowMe from "./FollowMe";
 import PostFormContainer from "./container/PostFormContainer";
 import AdminPanel from "./container/AdminPanelContainer";
 
@@ -23,12 +22,16 @@ const Grid = styled.div`
 
 const LeftColumn = styled.div`
   flex: 1 1 75%;
-  margin-right: 0.5rem;
+  @media (min-width: 768px) {
+    margin-right: 0.5rem;
+  }
 `;
 
 const RightColumn = styled.div`
   flex: 1 1 25%;
-  margin-left: 0.5rem;
+  @media (min-width: 768px) {
+    margin-left: 0.5rem;
+  }
 `;
 
 class App extends React.PureComponent {
@@ -68,7 +71,6 @@ class App extends React.PureComponent {
           <RightColumn>
             <About />
             <PopularPosts posts={popularPosts} />
-            <FollowMe />
           </RightColumn>
         </Grid>
 

@@ -19,7 +19,5 @@ export default ({ posts }) => (
         </Card>
       );
     })}
-
-    <a href="#todo">Load more posts</a>
   </>
 );
