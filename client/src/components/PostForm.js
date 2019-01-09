@@ -1,6 +1,6 @@
 import React from "react";
 import { FormInputs } from "./shared-styles";
-import { scrollToTop } from "./util";
+import { scrollToTop, formatDate } from "./util";
 import Button from "./Button";
 
 export default class PostForm extends React.PureComponent {
@@ -15,7 +15,8 @@ export default class PostForm extends React.PureComponent {
       post: {
         title: "",
         description: "",
-        text: ""
+        text: "",
+        comments: []
       },
       postId: id,
       fetched: false,
@@ -59,6 +60,11 @@ export default class PostForm extends React.PureComponent {
     }
   };
 
+  deleteComment = (e, id) => {
+    e.preventDefault();
+    this.props.deleteComment(id);
+  };
+
   render() {
     const title = this.state.postId ? "Edit post" : "Create new post";
     return (
@@ -92,6 +98,30 @@ export default class PostForm extends React.PureComponent {
             type="text"
           />
         </FormInputs>
+
+        <h5>Comments</h5>
+        <table>
+          <tbody>
+            <tr>
+              <th>comment</th>
+              <th>author</th>
+              <th>date</th>
+              <th>actions</th>
+            </tr>
+            {this.state.post.comments.map(({ id, comment, author, date }) => (
+              <tr key={id}>
+                <td>{comment}</td>
+                <td>{author}</td>
+                <td>{formatDate(date)}</td>
+                <td>
+                  <Button onClick={e => this.deleteComment(e, id)}>
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
         <Button onClick={this.onSubmit}>Submit</Button>
       </form>

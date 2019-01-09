@@ -43,6 +43,10 @@ function addComment(postId, comment) {
   return () => axios.post(`${baseUrl}/comments/${postId}`, data);
 }
 
+function deleteComment(commentId) {
+  return () => new Promise(r => r({ id: commentId }));
+}
+
 export default {
   getPosts,
   getPost,
@@ -50,5 +54,6 @@ export default {
   updatePost,
   createPost,
   fetchCommentsById,
-  addComment
+  addComment,
+  deleteComment
 };
