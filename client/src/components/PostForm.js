@@ -1,6 +1,7 @@
 import React from "react";
 import { FormInputs } from "./shared-styles";
 import { scrollToTop } from "./util";
+import Button from "./Button";
 
 export default class PostForm extends React.PureComponent {
   constructor(props) {
@@ -92,7 +93,7 @@ export default class PostForm extends React.PureComponent {
           />
         </FormInputs>
 
-        <button onClick={this.onSubmit}>Submit</button>
+        <Button onClick={this.onSubmit}>Submit</Button>
       </form>
     );
   }

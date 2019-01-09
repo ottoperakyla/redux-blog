@@ -12,6 +12,6 @@ const Footer = styled.div`
 
 export default () => (
   <Footer>
-    <h2>&copy; 2019 Acme Corporation</h2>
+    <h2>&copy; 2019 Cat Corporation</h2>
   </Footer>
 );

@@ -9,8 +9,8 @@ export const Card = styled.div`
 `;
 
 export const Image = styled.img`
-  ${props => `height: ${props.height};`}
-  width: 100%;
+  ${props => `height: ${props.height || "auto"};`}
+  ${props => `width: ${props.width || "100%"};`}
   object-fit: cover;
   margin-bottom: 0.25rem;
 `;

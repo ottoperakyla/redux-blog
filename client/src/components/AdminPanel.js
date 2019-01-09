@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { scrollToTop, limitChars } from "./util";
 import { Image, FormInputs } from "./shared-styles";
+import Button from "./Button";
 
 const Error = styled.div`
   color: red;
@@ -82,13 +83,13 @@ class AdminPanel extends React.PureComponent {
                     </td>
                     <td>
                       <Link to={`posts/${id}/edit`}>
-                        <button>Edit</button>
+                        <Button>Edit</Button>
                       </Link>
                     </td>
                     <td>
-                      <button onClick={() => this.deletePost(id)}>
+                      <Button onClick={() => this.deletePost(id)}>
                         Delete
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 );
@@ -96,7 +97,7 @@ class AdminPanel extends React.PureComponent {
             </tbody>
           </table>
           <Link to="posts/create">
-            <button>Create new post</button>
+            <Button>Create new post</Button>
           </Link>
         </>
       );
@@ -119,7 +120,7 @@ class AdminPanel extends React.PureComponent {
           </FormInputs>
 
           {this.state.error && <Error>{this.state.error}</Error>}
-          <button onClick={this.login}>Login</button>
+          <Button onClick={this.login}>Login</Button>
         </form>
       );
     }

@@ -6,7 +6,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import About from "./About";
 import PostsList from "./PostsList";
-import Post from "./Post";
+import Button from "./Button";
+import Post from "./container/PostContainer";
 import PopularPosts from "./PopularPosts";
 import PostFormContainer from "./container/PostFormContainer";
 import AdminPanel from "./container/AdminPanelContainer";
@@ -46,7 +47,7 @@ class App extends React.PureComponent {
         {loggedIn ? (
           <div>
             Logged in as admin. <Link to="/admin">Admin panel</Link>
-            <button onClick={logout}>Logout</button>
+            <Button onClick={logout}>Logout</Button>
           </div>
         ) : (
           <div>

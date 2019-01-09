@@ -23,7 +23,7 @@ const Header = styled.div`
 export default () => (
   <Header>
     <Link style={{ textDecoration: "none", color: "white" }} to="/">
-      <h2 style={{ color: "hotpink" }}>Blog with cat pictures</h2>
+      <h2 style={{ color: "hotpink" }}>Hardcore cat blog</h2>
     </Link>
   </Header>
 );
