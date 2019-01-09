@@ -55,7 +55,7 @@ class App extends React.PureComponent {
           </div>
         )}
         <Header />
-        <Grid>
+        <Grid id="content">
           <LeftColumn>
             <Switch>
               <Route

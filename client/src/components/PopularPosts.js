@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 import { Card, Image } from "./shared-styles";
+import { scrollToTop } from "./util";
 
 const PostListing = styled.div`
   display: flex;
@@ -15,7 +17,9 @@ export default ({ posts }) => (
       {posts.map(({ slug, image }) => (
         <div style={{ marginBottom: "0.5rem" }} key={slug}>
           <Image height="150px" src={image} alt="" />
-          <Link to={`posts/${slug}`}>Read more</Link>
+          <Link onClick={scrollToTop} to={`/posts/${slug}`}>
+            <Button>Read more</Button>
+          </Link>
         </div>
       ))}
     </PostListing>

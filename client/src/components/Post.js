@@ -1,7 +1,7 @@
 import React from "react";
 import { scrollToTop } from "./util";
-import { Link } from "react-router-dom";
-import Card from "./Card";
+import Card from "./PostCard";
+import Comments from "./Comments";
 
 class Post extends React.PureComponent {
   componentDidMount() {
@@ -13,14 +13,17 @@ class Post extends React.PureComponent {
       width: "100%",
       height: "350px"
     };
+    if (!this.props.currentPost) {
+      return null;
+    }
     return (
       <div>
-        <Link to="/">Go back</Link>
         <Card
           {...this.props.currentPost}
           imageProps={imageProps}
           readMore={false}
         />
+        <Comments id={this.props.currentPost.id} />
       </div>
     );
   }

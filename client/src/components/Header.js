@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { makeGradient } from "./util";
 
 const Header = styled.div`
   display: flex;
@@ -9,15 +10,8 @@ const Header = styled.div`
   padding: 2rem;
   font-size: 2rem;
   border-radius: 5px;
-  background: -webkit-linear-gradient(
-    left,
-    orange,
-    yellow,
-    green,
-    cyan,
-    blue,
-    violet
-  );
+  background: ${makeGradient()};
+  margin: 1rem 0;
 `;
 
 export default () => (
