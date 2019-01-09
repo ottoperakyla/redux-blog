@@ -1,16 +1,16 @@
 import axios from "axios";
+const baseUrl = "http://localhost:8889";
 
 function getPosts() {
-  return axios.get("http://localhost:8889/post").then(res => res.data);
+  return axios.get(`${baseUrl}/post`).then(res => res.data);
 }
 
 function getPost(id) {
-  return axios.get(`http://localhost:8889/post/${id}`).then(res => res.data);
+  return axios.get(`${baseUrl}/post/${id}`).then(res => res.data);
 }
 
 function deletePost(id) {
-  return () =>
-    axios.delete(`http://localhost:8889/post/${id}`).then(res => res.data);
+  return () => axios.delete(`${baseUrl}/post/${id}`).then(res => res.data);
 }
 
 function createPost(post) {
@@ -19,7 +19,7 @@ function createPost(post) {
     date: new Date(),
     image: "http://lorempixel.com/640/300/cats"
   };
-  return () => axios.post("http://localhost:8889/post/", data);
+  return () => axios.post(`${baseUrl}/post/`, data);
 }
 
 function updatePost(id, post) {
@@ -28,7 +28,19 @@ function updatePost(id, post) {
     date: new Date(),
     image: "http://lorempixel.com/640/300/cats"
   };
-  return () => axios.post(`http://localhost:8889/post/${id}`, data);
+  return () => axios.post(`${baseUrl}/post/${id}`, data);
+}
+
+function fetchCommentsById(postId) {
+  return () => axios.get(`${baseUrl}/comments/${postId}`).then(res => res.data);
+}
+
+function addComment(postId, comment) {
+  const data = {
+    ...comment,
+    date: new Date()
+  };
+  return () => axios.post(`${baseUrl}/comments/${postId}`, data);
 }
 
 export default {
@@ -36,5 +48,7 @@ export default {
   getPost,
   deletePost,
   updatePost,
-  createPost
+  createPost,
+  fetchCommentsById,
+  addComment
 };

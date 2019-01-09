@@ -1,7 +1,7 @@
 import React from "react";
 import { scrollToTop } from "./util";
 import Card from "./PostCard";
-import Comments from "./Comments";
+import Comments from "./container/CommentsContainer";
 
 class Post extends React.PureComponent {
   componentDidMount() {
@@ -23,7 +23,7 @@ class Post extends React.PureComponent {
           imageProps={imageProps}
           readMore={false}
         />
-        <Comments id={this.props.currentPost.id} />
+        <Comments currentPost={this.props.currentPost} />
       </div>
     );
   }

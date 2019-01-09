@@ -83,6 +83,13 @@ app.post("/post/:id", async (req, res, next) => {
   res.json(post);
 });
 
+app.post("/comments/:id", async (req, res, next) => {
+  // TODO: actually store comment
+  // const comment = await postService.addComment(req.params.id, req.body);
+  // res.json(comment);
+  res.json({ id: req.params.id, ...req.body });
+});
+
 /*
 const resources = {
   customer: customerService,
